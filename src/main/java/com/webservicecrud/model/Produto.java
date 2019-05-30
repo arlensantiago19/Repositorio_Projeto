@@ -31,6 +31,8 @@ public class Produto {
 
 	@Column
 	private Long codfornecedor;
+	
+	private Long bla;
 
 	@Column
 	private String codigoBarras;
