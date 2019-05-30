@@ -31,6 +31,7 @@ public class SwaggerConfig {
 	}
 	
 	private ApiInfo metaInfo() {
+		@SuppressWarnings("rawtypes")
 		ApiInfo apiInfo = new ApiInfo(
 				"Clientes API REST",
 				"API REST de cadastro de clientes.",

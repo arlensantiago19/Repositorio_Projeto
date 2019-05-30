@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/Clientes")
+@RequestMapping("/clientes")
 @Api(value="API REST Clientes")
 @CrossOrigin(origins="*")
 public class ClienteController {
@@ -33,7 +34,7 @@ public class ClienteController {
 	
 	/*Salvar um cliente no database*/
 	
-	@PostMapping("/Clientes")
+	@PostMapping
 	@ApiOperation(value="Salva um cliente na tabela")
 	public Cliente createCliente(@Valid @RequestBody Cliente cli) {
 		return clienteDAO.salvar(cli);
@@ -41,7 +42,7 @@ public class ClienteController {
 	
 	/*Listar todos os clientes*/
 	
-	@GetMapping("/Clientes")
+	@GetMapping
 	@ApiOperation(value="Retorna a lista de clientes")
 	public List<Cliente> listarTodosClientes() {
 		return clienteDAO.findAll();
@@ -49,8 +50,8 @@ public class ClienteController {
 	
 	/*Buscar um cliente pelo id*/
 	
-	@GetMapping("/Clientes/{id}")
-	@ApiOperation(value="Retorna um cliente em específico pelo Id")
+	@GetMapping("/{id}")
+	@ApiOperation(value="Retorna um cliente em especï¿½fico pelo Id")
 	public ResponseEntity<Cliente> buscarClientePeloId(@PathVariable(value="id") Long cliid) {
 		Cliente cli = clienteDAO.findOne(cliid);
 		
@@ -63,9 +64,9 @@ public class ClienteController {
 
 	/*Atualizar um cliente pelo id*/
 	
-	@PutMapping("/Clientes/{id}")
-	@ApiOperation(value="Atualiza os dados de um cliente já cadastrado na tabela")
-	public ResponseEntity<Cliente> atualizaCliente(@PathVariable(value="id") Long cliid,@Valid @RequestBody Cliente cliDetalhes) {
+	@PutMapping("/{id}")
+	@ApiOperation(value="Atualiza os dados de um cliente jï¿½ cadastrado na tabela")
+	public ResponseEntity<Cliente> atualizaCliente(@PathVariable(value="id") Long cliid, @Valid @RequestBody Cliente cliDetalhes) {
 		
 		Cliente cli = clienteDAO.findOne(cliid);
 		if(cli==null) {
@@ -82,7 +83,8 @@ public class ClienteController {
 	
 	/*Deletar um cliente pelo id*/
 	
-	@DeleteMapping("Clientes/{id}")
+//	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("/{id}")
 	@ApiOperation(value="Deleta um cliente da tabela")
 	public ResponseEntity<Cliente> deletarCliente(@PathVariable(value="id") Long cliid) {
 		
