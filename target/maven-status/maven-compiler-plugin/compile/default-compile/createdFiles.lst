@@ -1,5 +1,0 @@
-com\webservicecrud\model\Cliente.class
-com\webservicecrud\ClienteApplication.class
-com\webservicecrud\repository\ClienteRepository.class
-com\webservicecrud\controller\ClienteController.class
-com\webservicecrud\dao\ClienteDAO.class
